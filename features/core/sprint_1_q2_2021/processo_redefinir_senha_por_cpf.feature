@@ -12,8 +12,8 @@ Feature: processo_redefinir_senha_por_cpf.feature
     Background: Solicitação de troca de senha(Usuarios login cadastrado - Esqueceu a senha)
         Given Given Que ao abri a tela incial e clicar em -Acessar minha conta-
         And Que informo um "cpf" que possui uma conta válida
-        And Clico em -Continuar-
-        When Clico em esqueci minha senha
+        And Clicar em -Continuar-
+        When Clicar em esqueci minha senha
 
     #fluxos de sucesso
     @APP-1073_01
