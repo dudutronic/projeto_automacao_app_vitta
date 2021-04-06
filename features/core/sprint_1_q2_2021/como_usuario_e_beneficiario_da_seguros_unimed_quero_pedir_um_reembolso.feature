@@ -12,7 +12,9 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
 
     @APP-1020_01
     Scenario Outline: Solicitar reebolso(fluxo completo com sucesso - seguro Unimed e seguro Unimed + outro seguro)
-        Given Que esteja logado com um "cpf" com uma conta válida
+        Given Que esteja logado com um cpf com uma conta válida
+            | cpf   | 000.000.000-00 |
+            | senha | 00000          |
         And Clicar no icone -Central de Reembolso-
         And Que em tela de reembolso com um beneficiario do seguro Unimed
         When Preencher a tela com os dados do paciente
@@ -52,23 +54,22 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
     @APP-1020_02
     Scenario Outline: Efetuar login com CPF cadastrado (não possui seguro unimed ativo)
         Given Que esteja logado com um "cpf" com uma conta válida
+             | senha | 00000          |
         When Solicitar o reembolso
         Then Deve exibir a "mensagem" referente a situação que não qualifica ao reembolso no momento
 
         Examples:
             | cpf | mensagem                                                                                   |
             |     | Para acessar a Central de Reembolsos você precisa ativar a integração com a Seguros Unimed |
-            |     | Você não possio Seguros Unimed como beneficio do seu pacote                                |
-            |     | Não foi possivel completar a Solicitação                                                   |
+            |     | Você não possue Seguros Unimed como beneficio do seu pacote                                |
 
     @APP-1026_03
     Scenario: Falha no servidor (Ao clicar em solicitar reembolso/ Clicar em proximo ao preencher dados do cadastro)
         Given Que esteja logado com um "cpf" com uma conta válida
         When Solicitar o reembolso
+        And clicar em próximo ao preencher os formulários
         Then Deve exibir a "mensagem" referente a situação que não qualifica ao reembolso no momento
 
         Examples:
-            | cpf |senha| mensagem                                                                                   |
-            |     | |Para acessar a Central de Reembolsos você precisa ativar a integração com a Seguros Unimed |
-            |     || Você não possio Seguros Unimed como beneficio do seu pacote                                |
-            |     | |Não foi possivel completar a Solicitação      
+            | cpf | senha | mensagem                                 |
+            |     |       | Não foi possivel completar a Solicitação |

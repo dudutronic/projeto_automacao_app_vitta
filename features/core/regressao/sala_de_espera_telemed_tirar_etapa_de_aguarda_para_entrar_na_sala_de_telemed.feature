@@ -1,5 +1,5 @@
 #Estória: APP-842 (Processo de finalização de uma consulta de telemedicina)
-#data criação: 31-03-2021
+#data criação: 05-04-2021
 #Sprint: Regressivo
 #automatizado/manual
 
@@ -22,3 +22,9 @@ Feature: sala_de_espera_telemed_tirar_etapa_de_aguarda_para_entrar_na_sala_de_te
         Given Que em tela de atedimento
         When O médico iniciar a teleconsulta
         Then Deve notificar o acesso do médico a sala de teleconsulta
+
+    @APP-842_03
+    Scenario: Falha na conexão com o banco de dados
+        Given Que em tela de atedimento
+        When O médico iniciar a teleconsulta
+        Then Retorna a mensagem "Falha no servidor, por favor tente mais tarde"

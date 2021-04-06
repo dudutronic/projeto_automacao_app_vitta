@@ -23,7 +23,13 @@ Feature: processo_de_finalizacao_de_uma_consulta_de_telemedicina
         And Eu clico na opção avaliar.
         Then Ao finalizar a avaliação da ferramenta, deve apresentar o botão -voltar ao incio-.
 
+    #fluxos de excessão
     @APP-1019_02
+    Scenario: Pular avaliação do médico.
+        Given Eu clico no botão -pular-.
+        Then Sou direcionado para avaliar a ferramenta
+
+    @APP-1019_03
     Scenario: Pular avaliação da ferramenta.
         Given Eu indico o número de estrelas "2" para experiência com o médico
         And Eu clico na opção avaliar.
@@ -31,21 +37,19 @@ Feature: processo_de_finalizacao_de_uma_consulta_de_telemedicina
         And Eu clico no botão -pular-.
         Then Ao finalizar a avaliação da ferramenta, deve apresentar o botão -voltar ao incio-.
 
-    #fluxos de excessão
-
-    @APP-1019_03
+    @APP-1019_04
     Scenario: Medico não entrou na consulta
         Given Que o médico não entrou na consulta
         Then Não exibir a área de avaliação.
         And Exibir botão -voltar ao incio-.
 
-    @APP-1019_04
+    @APP-1019_05
     Scenario: Falha na conexão com o servidor primeira avaliação
         Given Eu indico o número de estrelas "2" para experiência com o médico
         When Eu clico na opção avaliar.
         Then Retorna a mensagem "Falha no servidor, por favor tente mais tarde"
 
-    @APP-1019_05
+    @APP-1019_06
     Scenario: Falha na conexão com o servidor segunda avaliação
         Given Eu indico o número de estrelas "2" para experiência com o médico
         And Eu clico na opção avaliar.
