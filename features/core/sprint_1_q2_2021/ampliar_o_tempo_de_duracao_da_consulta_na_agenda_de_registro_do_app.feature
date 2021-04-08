@@ -77,13 +77,4 @@ Feature: ampliar_o_tempo_de_duracao_da_consulta_na_agenda_de_registro_do_app
         And Agenda nativa do aparelho desabilitada
         And Internet desabilitada
         When Clicar no icone da agenda de uma consuta ativa
-        Then O sistema não deve conseguir agendar
-
-    @APP-1046_09
-    Scenario: Não agendar quando agenda desabilitada e internet desligada/falha na comunicão
-        Given Que tenha acessado o menu agendamento
-        And Esteja na aba de próximos
-        And Agenda nativa do aparelho desabilitada
-        And Internet desabilitada
-        When Clicar no icone da agenda de uma consuta ativa
-        Then O sistema não deve conseguir agendar
+        Then O sistema não deve informar que o agendamento foi efetuado
