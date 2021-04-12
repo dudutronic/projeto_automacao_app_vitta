@@ -1,5 +1,5 @@
 #Estória: APP-1020 (Como usuário e beneficiário da Seguros Unimed quero pedir um reembolso)
-#data criaçã:o -04-2021
+#data criaçã: 12-04-2021
 #Sprint: 1-Q2/2021
 #Execução: Manual/Automatizada
 
