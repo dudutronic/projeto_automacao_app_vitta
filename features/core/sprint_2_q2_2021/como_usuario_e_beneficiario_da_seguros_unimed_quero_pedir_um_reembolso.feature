@@ -1,5 +1,5 @@
 #Estória: APP-1020 (Como usuário e beneficiário da Seguros Unimed quero pedir um reembolso)
-#data criaçã: 12-04-2021
+#data criaçã: 13-04-2021
 #Sprint: 2-Q2/2021
 #Execução: Manual/Automatizada
 
@@ -7,14 +7,10 @@
 Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
   Background: Solicitação de troca de senha(Usuarios login cadastrado - Esqueceu a senha)
     Given Que ao abri a tela incial e clicar em -Acessar minha conta-
-    And Que informo um "cpf" que possui uma conta válida
-    And Clicar em -Continuar-
 
   @APP-1020_01
   Scenario Outline: Solicitar reebolso(fluxo completo com sucesso - seguro Unimed e seguro Unimed + outro seguro)
-    Given Que esteja logado com um cpf com uma conta válida
-      | cpf   | 000.000.000-00 |
-      | senha | 00000          |
+    Given Que esteja logado com um "cpf" e uma "senha" de uma conta válida
     And Clicar no icone -Central de Reembolso-
     And Que em tela de reembolso com um beneficiario do seguro Unimed
     When Preencher a tela com os dados do paciente
@@ -41,13 +37,13 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
       | input_agencia              |  |
       | select_conta               |  |
       | select_digito              |  |
-    Then Sou direcionado tela de finalização onde apresentará uma mensagem sobre o pedido
-      | mensagem | pedido de reembolso efetuado com sucesso |
+    Then Sou direcionado tela de finalização onde apresentará uma "mensagem"sobre o pedido
+
 
     Examples:
-      | cpf | senha |
-      |     |       |
-      |     |       |
+      | cpf | senha | mensagem                                 |
+      |     |       | pedido de reembolso efetuado com sucesso |
+
 
   #fluxo de exceção
   @APP-1020_02
@@ -64,10 +60,22 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
 
   @APP-1026_03
   Scenario: Falha no servidor (Ao clicar em solicitar reembolso/ Clicar em proximo ao preencher dados do cadastro)
-    Given Que esteja logado com um "cpf" com uma conta válida
+    Given Que esteja logado com um "cpf" e uma "senha" de uma conta válida
     When Solicitar o reembolso
     And clicar em próximo ao preencher os formulários
     Then Deve exibir a "mensagem" referente a situação que não qualifica ao reembolso no momento
+
+    Examples:
+      | cpf | senha | mensagem                                 |
+      |     |       | Não foi possivel completar a Solicitação |
+
+  @APP-1026_04
+  Scenario Outline: Solicitar reebolso(fluxo completo - Tenta continuar com formulario faltando informações)
+    Given Que esteja logado com um "cpf" e uma "senha" de uma conta válida
+    And Clicar no icone -Central de Reembolso-
+    And Que em tela de reembolso com um beneficiario do seguro Unimed
+    When clicar em próximo ao preencher os formulários
+    Then Quando clicar continuar faltando informação do formulario ou incorrta, retornar "mensagem" de erro
 
     Examples:
       | cpf | senha | mensagem                                 |
