@@ -5,7 +5,7 @@
 
 @APP-1020
 Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
-  Background: Solicitação de troca de senha(Usuarios login cadastrado - Esqueceu a senha)
+  Background: Acessar tela de login
     Given Que ao abri a tela incial e clicar em -Acessar minha conta-
 
   @APP-1020_01
