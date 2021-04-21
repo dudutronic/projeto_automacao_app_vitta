@@ -75,19 +75,21 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
     And Clicar no icone -Central de Reembolso-
     And Que em tela de reembolso com um beneficiario do seguro Unimed
     When clicar em próximo ao preencher os formulários
-    Then Quando clicar continuar faltando informação do formulario ou incorrta, retornar "mensagem" de erro
+    Then Quando clicar continuar faltando informação do formulario ou informações incorretas, retornar "mensagem" de erro
 
     Examples:
       | cpf | senha | mensagem                                 |
       |     |       | Não foi possivel completar a Solicitação |
+      |     |       | Campo Obrigatorio                        |
+      |     |       | Dados inválidos                          |
 
   @APP-1026_05
-  Scenario Outline: Solicitar reembolso(Não possui seguro unimed)
+  Scenario Outline: Solicitar reembolso(Possui mais que o seguro unimed)
     Given Que esteja logado com um "cpf" e uma "senha" de uma conta válida
     And Clicar no icone -Central de Reembolso-
-    And Que em tela de reembolso com um beneficiario do seguro Unimed
+    And Que em tela de reembolso com um beneficiario do seguro Unimed e outro beneficio
     When clicar em próximo ao preencher os formulários
-    Then Quando clicar continuar faltando informação do formulario ou incorrta, retornar "mensagem" de erro
+    Then Deve deve ser possivel inserir o "cpf" e "senha" para vincular a integração para continuar a solicitação de reembolso
 
     Examples:
       | cpf | senha | mensagem                                                    |
@@ -106,3 +108,16 @@ Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
     Examples:
       | cpf         | senha         | mensagem                                                                                   |
       | 05061097041 | Melhor3maior@ | Para acessar a Central de Reembolsos você precisa ativar a integração com a Seguros Unimed |
+
+  @APP-1020_07
+  Scenario Outline: Integração com um seguro diferente do unimed (No momento só deve ser possivél solicitar reembolso com a integração Unimed)
+    Given Que o usuario informa um "cpf" de uma conta válida escolhendo logar por ele
+    And Insere uma senha "senha" válida
+    When Acessa a central de reembolso e faz a integração com "cpf" e "senha" válidos que não sejam Unimed
+    Then A aplicação não deve permitir a solicitação de reembolso
+    But Deve permitir conectar novamente com a integração para solicitar o reembolso
+
+
+    Examples:
+      | cpf         | senha         | mensagem                                                                                   |
+      | 76586007097 | Melhor3maior@ | Para acessar a Central de Reembolsos você precisa ativar a integração com a Seguros Unimed |
