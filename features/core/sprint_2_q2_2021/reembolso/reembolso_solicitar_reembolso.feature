@@ -1,11 +1,11 @@
 #Projeto: APP Vitta - The Coders
-#Estória: APP-1020 (Como usuário e beneficiário da Seguros Unimed quero pedir um reembolso)
+#Estória: APP-1020 ([The Coders: Reembolso] Solicitar reembolso.)
 #data criaçã: 19-04-2021
 #Sprint: 2-Q2/2021
 #Execução: Manual/Automatizada
 
 @APP-1020
-Feature: como_usuario_e_beneficiario_da_seguros_unimed_quero_pedir_um_reembolso
+Feature: reembolso_solicitar_reembolso
 
   @APP-1020_01
   Scenario Outline: Efetuar login com CPF cadastrado (Solicitar integração com o seguro unimed pela primeira vez)
