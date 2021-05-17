@@ -39,3 +39,15 @@ Feature: revamp_tela_de_perfil_e_configurações_tela_inicial_um_de_sete
         Then deve abrir o a escolha de um repositorio de fotos do device
         And Deve ser possível selecionar uma imagem e apresenta-la para inserção
         And Ao salvar, deve ficar como nova imagem de perfil
+
+    Scenario: Exibir novos campos na tela de Perfil
+        Given Acesse tela Perfil e configurações
+        Then Exibir o campo com "Nome completo do usuario" e "e-mail do usuario"
+
+    Scenario: Exibir banner de completude dos dados pessoais do usuário
+        Given Acesse tela Perfil e configurações
+        When O banner com o titulo "Dados pessoais" for disponibilizado
+        Then Deve conter dentro dele os campos descrição "Um perfil completo é essencial para sua experiência com a Vitta"
+        And Barra com a completude dos dados preenchidos
+        And Banner deve conter a ação clicavel
+        And Ter a o icone de fechamento do banner "X"
