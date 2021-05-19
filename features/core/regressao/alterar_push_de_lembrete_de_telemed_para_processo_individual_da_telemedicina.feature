@@ -26,3 +26,8 @@ Feature: alterar_push_de_lembrete_de_telemed_para_processo_individual_da_telemed
         Then Deve redirecionar para a tela de aceite de termos
         And Ao aceitar, ir para a tela de espera
         And Em seguida, tela de consulta
+
+    @APP-1033_2
+    Scenario: Receber Push notification quando tenho uma tele consulta, durante 3 dias antes
+        Given que tenha uma consulta telemed agendada
+        Then Com 72 horas prévias, devo receber uma push notification
