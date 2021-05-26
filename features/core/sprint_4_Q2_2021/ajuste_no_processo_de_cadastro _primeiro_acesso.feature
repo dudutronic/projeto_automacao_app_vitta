@@ -15,7 +15,7 @@ Feature: ajuste_no_processo_de_cadastro _primeiro_acesso
     sucesso ou falha.
 
     Background: Inserção de CPF pré-cadastrado
-        Given Que insira um "05061097041" válido pré cadastrado
+        Given Que insira um "55722360040" válido pré cadastrado
 
     @APP-1222_1
     Scenario: Primeiro acesso com um cpf pré-cadastrado (e-mail correto)
@@ -23,8 +23,7 @@ Feature: ajuste_no_processo_de_cadastro _primeiro_acesso
         Then Nova tela deve conter o e-mail pré-cadastrado com partes ocultas
         And Clicar continuar para ir a tela de criação de senha
 
-
-    @APP-1222_1
+    @APP-1222_2
     Scenario: Primeiro acesso com um cpf pré-cadastrado (e-mail correto - código incorreto)
         When clicar em continuar
         Then Nova tela deve conter o e-mail pré-cadastrado com partes ocultas
@@ -46,7 +45,6 @@ Feature: ajuste_no_processo_de_cadastro _primeiro_acesso
         And Campo para inserção de código de segurança
         And Clicar continuar
         Then Deve apresentar a mensagem "Código incorreto"
-
 
     @APP-1222_5
     Scenario: Solicitar a troca de e-mail incorreto/troca de e-mail (Novo e-mail não consta no banco)
