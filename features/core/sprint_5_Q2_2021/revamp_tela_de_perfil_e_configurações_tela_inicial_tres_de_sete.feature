@@ -35,7 +35,7 @@ Feature: revamp_tela_de_perfil_e_configurações_tela_inicial_tres_de_sete
     Scenario: Validar Alteração de senha
         Given acessar a troca de senha pelo dados de login
         When Inserir a "senha_atual"
-        And Inserir "nova_senha" de forma identica duas vezes
+        And Inserir "nova_senha"
         And Clicar em salvar
         Then Deve persistir a alteração da nova senha
         And Após salvar deve redirecionar a tela de dados do login
@@ -44,32 +44,41 @@ Feature: revamp_tela_de_perfil_e_configurações_tela_inicial_tres_de_sete
     Scenario: Validar Alteração de senha (Senha atual inserida inválida)
         Given acessar a troca de senha pelo dados de login
         When Inserir a "senha_atual" de forma incorreta
-        And Inserir "nova_senha" de forma identica duas vezes
+        And Inserir "nova_senha" com caracteres válidos
         And Clicar em salvar
         Then Não deve efetuar a alteração da nova senha
         And Apresentar mensagem de erro referente a senha digitada de forma incorreta
 
 
-    Scenario: Validar Alteração de senha (novas senhas não são iguais)
-        Given acessar a troca de senha pelo dados de login
-        When Inserir a "senha_atual" de forma incorreta
-        And Inserir "nova_senha_p" no primeirco campo
-        And Inserir "nova_senha_s" no segundo campo diferente da primeira
-        And Clicar em salvar
-        Then Não deve efetuar a alteração da nova senha
-        And Apresentar mensagem de erro referente a senha digitada que não conhecidem
+    # Scenario: Validar Alteração de senha (novas senhas não são iguais)
+    #    Given acessar a troca de senha pelo dados de login
+    #    When Inserir a "senha_atual" de forma incorreta
+    #     And Inserir "nova_senha_p" no primeirco campo
+    #     And Inserir "nova_senha_s" no segundo campo diferente da primeira
+    #    And Clicar em salvar
+    #    Then Não deve efetuar a alteração da nova senha
+    #    And Apresentar mensagem de erro referente a senha digitada que não conhecidem
 
 
     Scenario: Validar Alteração de senha (Nova senha com caracteres inválidos)
         Given acessar a troca de senha pelo dados de login
-        When Inserir a "senha_atual" de forma incorreta
-        And Inserir "nova_senha" de forma identica mas com caracteres inválidos
+        When Inserir a "senha_atual"
+        And Inserir "nova_senha" com caracteres inválidos
         And Clicar em salvar
         Then Não deve efetuar a alteração da nova senha
         And Apresentar mensagem de erro referente a nova senha com caracteres inválidos
 
 
-    Scenario: Validar Alteração de senha (Delogar e logar novamente por e-mail)
+    Scenario: Validar Alteração de senha (Nova senha inserida com a senha antiga)
+        Given acessar a troca de senha pelo dados de login
+        When Inserir a "senha_atual" de forma incorreta
+        And Inserir "nova_senha" com o mesmo conteúdo da senha atual
+        And Clicar em salvar
+        Then Não deve efetuar a alteração da nova senha
+        And Apresentar mensagem "A nova senha não deve pode ser a senha atual"
+
+
+    Scenario: Validar Alteração de senha (Deslogar e logar novamente por e-mail)
         Given Que tenha alterado a senha
         And Efetuar o login pelo cpf da senha alterada
         When Inserir a nova senha cadastrada e clicar em fazer login
@@ -77,7 +86,7 @@ Feature: revamp_tela_de_perfil_e_configurações_tela_inicial_tres_de_sete
         But Relogar com a senha antiga deve apresentar erro de senha inválida
 
 
-    Scenario: Validar Alteração de senha (Delogar e logar novamente por e-mail)
+    Scenario: Validar Alteração de senha (Deslogar e logar novamente por e-mail)
         Given Que tenha alterado a senha
         And Efetuar o login pelo e-mail da senha alterada
         When Inserir a nova senha cadastrada e clicar em fazer login
