@@ -17,6 +17,7 @@ Feature: revamp_tela_de_perfil_e_configurações_endereco_quatro_de_sete.feature
         When Acesse tela Perfil e configurações
         And Clicar em Endereços
 
+
     Scenario: Criação da tela Endereço (Para alteração ou adição)
         Given Que tenha acessado Endereços a partir da tela Perfil e configuração
         Then Deve Exibir uma nova tela com cards dos endereços cadastrados -exibir completo dentro deles-
@@ -32,6 +33,7 @@ Feature: revamp_tela_de_perfil_e_configurações_endereco_quatro_de_sete.feature
         Then Deve abrir para a edição
         And Após finalizar, deve voltar para a tela de endereços com as informações atualizadas
         But Ocorrer erro com servidor, as informações não devem ser atualizadas
+
 
     Scenario: Cadastrar endereços
         Given Que tenha acessado Endereços a partir da tela Perfil e configuração
